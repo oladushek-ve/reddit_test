@@ -7,7 +7,7 @@ Resource    ../resources/login_data.robot
 
 *** Variables ***
 ${PostName}    Incubator_asdqwerzxcvtyuighjklvnbmfjdghjdf
-${CommentContent}    Hi man
+${CommentContent}    Hello dear world
 
 *** Test Cases ***
 Open Browser
