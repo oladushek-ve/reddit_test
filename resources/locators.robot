@@ -1,6 +1,3 @@
-*** Settings ***
-Library    SeleniumLibrary
-
 *** Variables ***
 # Locators for authorization
 ${LOCATOR_OPEN_LOGIN_FORM}    class:_3Wg53T10KuuPmyWOMWsY2F
