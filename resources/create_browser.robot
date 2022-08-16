@@ -13,6 +13,6 @@ Create Chrome
     ${chrome_options} =    Evaluate    selenium.webdriver.ChromeOptions()
     Call Method    ${chrome_options}    add_argument    --start-maximized
     Call Method    ${chrome_options}    add_argument    --disable-notifications
-
+    Call Method    ${chrome_options}    add_argument    --no-sandbox
     Create WebDriver    ${BrowserName}    executable_path=${ChromeDriverPath}    chrome_options=${chrome_options}
     Go to    ${BaseUrl}
