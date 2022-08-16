@@ -15,9 +15,7 @@ Authorization
     wait until page contains element    ${LOCATOR_FRAME}
     select frame    ${LOCATOR_FRAME}
     input text    ${LOCATOR_USERNAME}    ${UserName}
-    input text    ${LOCATOR_PASSWORD}    ${Password}
+    input password    ${LOCATOR_PASSWORD}    ${Password}
     click button    ${LOCATOR_BUTTON_AUTHORIZATION}
-    unselect frame
-    wait until element does not contain    ${LOCATOR_FRAME}    30
-    page should not contain    ${LOCATOR_FRAME}    Authorization fail
-
+    wait until page does not contain element    ${LOCATOR_LOGIN_FORM}    10
+    page should not contain element    ${LOCATOR_LOGIN_FORM}
