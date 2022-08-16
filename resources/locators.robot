@@ -5,6 +5,8 @@ ${LOCATOR_FRAME}    tag:iframe
 ${LOCATOR_USERNAME}    id:loginUsername
 ${LOCATOR_PASSWORD}    id:loginPassword
 ${LOCATOR_BUTTON_AUTHORIZATION}    class:AnimatedForm__submitButton
+${LOCATOR_LOGIN_FORM}    class:Login
+${LOCATOR_PENDING}    class:m-pending
 
 # Locators for closing topics list
 ${LOCATOR_TOPICS_LIST}    class:_2aK1Wp37TOccNSDJhJiDXo
@@ -18,5 +20,11 @@ ${LOCATOR_SUGGEST_LIST}    class:_20OHBqoDD71_8fv7tuG6u6
 ${LOCATOR_POSTS}    class:_1oQyIsiPHYt6nx7VOmd1sz
 
 # Locators for working with comment creater
-${LOCATOR_POST_EDIT}    id:comment-submission-form-richtext
-${LOCATOR_BUTTON_SEND_COMMENT}    class:_3SNMf5ZJL_5F1qxcZkD0Cp
+${LOCATOR_POST_EDIT}    class:notranslate
+${LOCATOR_BUTTON_SEND_COMMENT}    class:_22S4OsoDdOqiM-hPTeOURa
+
+# Locator for delete comment
+${LOCATOR_OPTIONS_COMMENT}    xpath://div[@class='_3sf33-9rVAO_v4y0pIW_CH']//button[contains(@class,'_2pFdCpgBihIaYh9DSMWBIu')]
+${LOCATOR_LIST_OPTIONS}    class:_10K5i7NW6qcm-UoCtpB3aK
+${LOCATOR_DELETE_BUTTON}    xpath://*[@id="overlayScrollContainer"]/div[6]/div/button[4]
+${LOCATOR_AGREEMENT_DELETE}    class:_17UyTSs2atqnKg9dIq5ERg
