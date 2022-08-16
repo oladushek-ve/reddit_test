@@ -7,20 +7,26 @@ Resource    ../resources/login_data.robot
 
 *** Variables ***
 ${PostName}    Incubator_asdqwerzxcvtyuighjklvnbmfjdghjdf
+${CommentContent}    Hi man
 
 *** Test Cases ***
-Open browser
+Open Browser
     Create Chrome
 
-Authorizations on page
+Authorizations On Page
     Authorization    ${UsernameReddit}    ${PasswordReddit}
 
 Close Topics List After Authorization
     Close Topics List
 
-Find post by tag
+Find Post By Key
     Find Post    ${PostName}
-    close browser
 
+Add Comment Uder Post
+    Create Comment    ${CommentContent}
+
+Delete Comment Uder Post
+    Delete Comment
+    close browser
 
 
