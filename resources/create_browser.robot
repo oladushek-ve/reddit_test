@@ -1,10 +1,10 @@
 *** Settings ***
 Library    SeleniumLibrary
 
+
 *** Variables ***
 ${BrowserName}    Chrome
 ${ChromeDriverPath}    ./chromedriver
-
 ${BaseUrl}    https://reddit.com
 
 
