@@ -26,3 +26,5 @@ Delete Comment
     click button    ${LOCATOR_OPTIONS_COMMENT}
     click button    ${LOCATOR_DELETE_BUTTON}
     click button    ${LOCATOR_AGREEMENT_DELETE}
+    wait until element contains    ${LOCATOR_DELETE_COMMENT}    Comment deleted by user
+    page should contain element    ${LOCATOR_DELETE_COMMENT}    Comment deleted
