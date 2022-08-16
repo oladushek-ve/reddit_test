@@ -25,6 +25,6 @@ ${LOCATOR_BUTTON_SEND_COMMENT}    class:_22S4OsoDdOqiM-hPTeOURa
 
 # Locator for delete comment
 ${LOCATOR_OPTIONS_COMMENT}    xpath://div[@class='_3sf33-9rVAO_v4y0pIW_CH']//button[contains(@class,'_2pFdCpgBihIaYh9DSMWBIu')]
-${LOCATOR_LIST_OPTIONS}    class:_10K5i7NW6qcm-UoCtpB3aK
 ${LOCATOR_DELETE_BUTTON}    xpath://*[@id="overlayScrollContainer"]/div[6]/div/button[4]
 ${LOCATOR_AGREEMENT_DELETE}    class:_17UyTSs2atqnKg9dIq5ERg
+${LOCATOR_DELETE_COMMENT}    class:_3tw__eCCe7j-epNCKGXUKk
