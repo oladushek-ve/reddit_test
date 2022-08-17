@@ -3,27 +3,25 @@ Library    SeleniumLibrary
 Resource    ../resources/create_browser.robot
 Resource    ../resources/authorization.robot
 Resource    ../resources/work_with_post.robot
-Resource    ../resources/login_data.robot
+Variables    ../resources/variables/login_data.py
+Variables    ../resources/variables/content.py
 
-*** Variables ***
-${PostName}    Incubator_asdqwerzxcvtyuighjklvnbmfjdghjdf
-${CommentContent}    Hello dear world
 
 *** Test Cases ***
 Open Browser
     Create Chrome
 
 Authorizations On Page
-    Authorization    ${UsernameReddit}    ${PasswordReddit}
+    Authorization    ${username_reddit}    ${password_reddit}
 
 Close Topics List After Authorization
     Close Topics List
 
 Find Post By Key
-    Find Post    ${PostName}
+    Find Post    ${post_name}
 
 Add Comment Uder Post
-    Create Comment    ${CommentContent}
+    Create Comment    ${comment_content}
 
 Delete Comment Uder Post
     Delete Comment
