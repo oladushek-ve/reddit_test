@@ -5,4 +5,5 @@ test_cases/log.html
 test_cases/output.xml
 test_cases/report.html
 test_cases/selenium-screenshot*
-resources/login_data.robot
+resources/variables/locators.py
+resources/variables/__pycache__/
