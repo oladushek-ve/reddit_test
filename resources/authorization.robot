@@ -1,11 +1,10 @@
 *** Settings ***
 Library    RequestsLibrary
 Library    JSONLibrary
+Library    Collections
 Variables    ./variables/conf.py
 Variables    ./variables/login_data.py
 
-*** Variables ***
-${AuthUrl}    api/v1/access_token
 
 *** Keywords ***
 Authorization
@@ -13,9 +12,9 @@ Authorization
     ${headers}=    Create Dictionary    User-Agent=${useragent}
     ${auth}=    Create List    ${client_id}    ${secret_key}
 
-    Create Session  alias=redditsession    url=${token_url}    auth=${auth}    verify=true
+    Create Session  alias=authorizating    url=${token_url}    auth=${auth}    verify=true
 
-    ${responce}=    POST On Session    redditsession    ${AuthUrl}    data=${body}    headers=${headers}
+    ${responce}=    POST On Session    authorizating    ${auth_url}    data=${body}    headers=${headers}
     Status Should Be    200    ${responce}
     LOG    Response = ${responce}
     LOG    Json Data = ${responce.json()}
@@ -23,4 +22,8 @@ Authorization
     ${token}=    Catenate    bearer    ${responce.json()['access_token']}
     LOG    Token = ${token}
 
-    [Return]    ${token}
+    Set To Dictionary    ${headers}    Authorization    ${token}
+
+    LOG    Headers = ${headers}
+
+    [Return]    ${headers}
