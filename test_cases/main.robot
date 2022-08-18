@@ -1,10 +1,17 @@
 *** Settings ***
 Library    SeleniumLibrary
 Resource    ../resources/authorization.robot
-Variables    ../resources/variables/login_data.py
+Resource    ../resources/work_with_post.robot
+Variables    ../resources/variables/conf.py
 
 
 *** Test Cases ***
-Authorizations On Page
-    Authorization
+Reddit Work
+    ${headers}=    Authorization
+    Create Session    alias=chech_auth    url=${base_url}    verify=true
+    ${responce}=    GET On Session    chech_auth    ${check_auth_url}    headers=${headers}
+    Status Should Be    200    ${responce}
 
+    ${fullname_post}=    Find Post    ${headers}
+    ${fullname_comment}=    Send Comment    ${headers}    ${fullname_post}
+    Del Comment    ${headers}    ${fullname_comment}
