@@ -8,8 +8,8 @@ Variables    ../resources/variables/conf.py
 *** Test Cases ***
 Reddit Work
     ${headers}=    Authorization
-    Create Session    alias=chech_auth    url=${base_url}    verify=true
-    ${response}=    GET On Session    chech_auth    ${check_auth_url}    headers=${headers}
+    Create Session    alias=check_auth    url=${base_url}    verify=true
+    ${response}=    GET On Session    check_auth    ${check_auth_url}    headers=${headers}
     Status Should Be    200    ${response}
 
     ${fullname_post}=    Find Post    ${headers}
