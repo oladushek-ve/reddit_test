@@ -1,30 +1,45 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource    ./locators.robot
+Library    RequestsLibrary
+Variables    ./variables/content.py
+Variables    ./variables/conf.py
+
 
 
 *** Keywords ***
 Find Post
-    [Arguments]    ${PostName}
-    input text   ${LOCATOR_SEARCH_FIELD}    ${PostName}
-    wait until page contains element    ${LOCATOR_SUGGEST_LIST}
-    click link    ${LOCATOR_SUGGEST_LIST}
-    wait until page contains element    ${LOCATOR_POSTS}
-    page should contain element    ${LOCATOR_POSTS}    Post not found by name ${PostName}
-    click element    ${LOCATOR_POSTS}
+    [Arguments]    ${headers}
+    ${post_url}    Catenate    SEPARATOR=    ${url_search}    ${post_name}
 
-Create Comment
-    [Arguments]    ${Comment}
-    wait until page contains element    ${LOCATOR_POST_EDIT}    30
-    click element    ${LOCATOR_POST_EDIT}
-    press keys    ${LOCATOR_POST_EDIT}    ${Comment}
-    click button    ${LOCATOR_BUTTON_SEND_COMMENT}
-    wait until element contains    ${LOCATOR_BUTTON_SEND_COMMENT}   Comment
+    LOG    ${post_url}
 
+    Create Session    alias=work_post    url=${base_url}    verify=true
+    ${responce}=    GET On Session    work_post    ${post_url}    headers=${headers}
 
-Delete Comment
-    click button    ${LOCATOR_OPTIONS_COMMENT}
-    click button    ${LOCATOR_DELETE_BUTTON}
-    click button    ${LOCATOR_AGREEMENT_DELETE}
-    wait until element contains    ${LOCATOR_DELETE_COMMENT}    Comment deleted by user
-    page should contain element    ${LOCATOR_DELETE_COMMENT}    Comment deleted by user
+    Status Should Be    200    ${responce}
+
+    ${fullname}=    Catenate    ${responce.json()['data']['children'][0]['data']['name']}
+
+    LOG    ${fullname}
+
+    [Return]    ${fullname}
+
+Send Comment
+    [Arguments]    ${headers}    ${fullname}
+
+    ${body}=    Create Dictionary    parent=${fullname}    text=${comment_content}
+
+    ${responce}=    POST On Session    work_post    ${url_send_post}    data=${body}    headers=${headers}
+
+    Status Should Be    200    ${responce}
+
+    LOG    ${responce.json()['jquery'][-4][3][0][0]['data']['name']}
+
+    [Return]    ${responce.json()['jquery'][-4][3][0][0]['data']['name']}
+
+Del Comment
+    [Arguments]    ${headers}    ${fullname}
+    ${body}=    Create Dictionary    id=${fullname}
+    ${responce}=    POST On Session    work_post    ${url_del_comment}    data=${body}    headers=${headers}
+
+    Status Should Be    200    ${responce}
