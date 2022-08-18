@@ -14,11 +14,11 @@ Find Post
     LOG    ${post_url}
 
     Create Session    alias=work_post    url=${base_url}    verify=true
-    ${responce}=    GET On Session    work_post    ${post_url}    headers=${headers}
+    ${response}=    GET On Session    work_post    ${post_url}    headers=${headers}
 
-    Status Should Be    200    ${responce}
+    Status Should Be    200    ${response}
 
-    ${fullname}=    Catenate    ${responce.json()['data']['children'][0]['data']['name']}
+    ${fullname}=    Catenate    ${response.json()['data']['children'][0]['data']['name']}
 
     LOG    ${fullname}
 
@@ -29,17 +29,17 @@ Send Comment
 
     ${body}=    Create Dictionary    parent=${fullname}    text=${comment_content}
 
-    ${responce}=    POST On Session    work_post    ${url_send_post}    data=${body}    headers=${headers}
+    ${response}=    POST On Session    work_post    ${url_send_post}    data=${body}    headers=${headers}
 
-    Status Should Be    200    ${responce}
+    Status Should Be    200    ${response}
 
-    LOG    ${responce.json()['jquery'][-4][3][0][0]['data']['name']}
+    LOG    ${response.json()['jquery'][-4][3][0][0]['data']['name']}
 
-    [Return]    ${responce.json()['jquery'][-4][3][0][0]['data']['name']}
+    [Return]    ${response.json()['jquery'][-4][3][0][0]['data']['name']}
 
 Del Comment
     [Arguments]    ${headers}    ${fullname}
     ${body}=    Create Dictionary    id=${fullname}
-    ${responce}=    POST On Session    work_post    ${url_del_comment}    data=${body}    headers=${headers}
+    ${response}=    POST On Session    work_post    ${url_del_comment}    data=${body}    headers=${headers}
 
-    Status Should Be    200    ${responce}
+    Status Should Be    200    ${response}

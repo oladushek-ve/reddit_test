@@ -14,12 +14,12 @@ Authorization
 
     Create Session  alias=authorizating    url=${token_url}    auth=${auth}    verify=true
 
-    ${responce}=    POST On Session    authorizating    ${auth_url}    data=${body}    headers=${headers}
-    Status Should Be    200    ${responce}
-    LOG    Response = ${responce}
-    LOG    Json Data = ${responce.json()}
+    ${response}=    POST On Session    authorizating    ${auth_url}    data=${body}    headers=${headers}
+    Status Should Be    200    ${response}
+    LOG    Response = ${response}
+    LOG    Json Data = ${response.json()}
 
-    ${token}=    Catenate    bearer    ${responce.json()['access_token']}
+    ${token}=    Catenate    bearer    ${response.json()['access_token']}
     LOG    Token = ${token}
 
     Set To Dictionary    ${headers}    Authorization    ${token}
